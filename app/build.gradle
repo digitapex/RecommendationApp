@@ -10,6 +10,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "TASTEDIVE_API_KEY", "\""+getTasteDiveApiKey()+"\""
+
     }
     buildTypes {
         release {
@@ -28,3 +30,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
+
+def getTasteDiveApiKey() {
+    def Properties props = new Properties()
+    props.load(new FileInputStream(new File('local.properties')))
+    return props['TASTEDIVE_API_KEY']
+}
+
