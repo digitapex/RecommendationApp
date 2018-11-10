@@ -1,0 +1,96 @@
+{
+  "Similar": {
+    "Info": [
+      {
+        "Name": "Red Hot Chili Peppers",
+        "Type": "music"
+      },
+      {
+        "Name": "Pulp Fiction",
+        "Type": "movie"
+      }
+    ],
+    "Results": [
+      {
+        "Name": "John Frusciante",
+        "Type": "music"
+      },
+      {
+        "Name": "Reservoir Dogs",
+        "Type": "movie"
+      },
+      {
+        "Name": "Kill Bill",
+        "Type": "movie"
+      },
+      {
+        "Name": "Foo Fighters",
+        "Type": "music"
+      },
+      {
+        "Name": "Inglourious Basterds",
+        "Type": "movie"
+      },
+      {
+        "Name": "Jackie Brown",
+        "Type": "movie"
+      },
+      {
+        "Name": "Death Proof",
+        "Type": "movie"
+      },
+      {
+        "Name": "Sublime",
+        "Type": "music"
+      },
+      {
+        "Name": "The Big Lebowski",
+        "Type": "movie"
+      },
+      {
+        "Name": "From Dusk Till Dawn",
+        "Type": "movie"
+      },
+      {
+        "Name": "Pearl Jam",
+        "Type": "music"
+      },
+      {
+        "Name": "Incubus",
+        "Type": "music"
+      },
+      {
+        "Name": "Four Rooms",
+        "Type": "movie"
+      },
+      {
+        "Name": "Audioslave",
+        "Type": "music"
+      },
+      {
+        "Name": "Goodfellas",
+        "Type": "movie"
+      },
+      {
+        "Name": "The Offspring",
+        "Type": "music"
+      },
+      {
+        "Name": "Nirvana",
+        "Type": "music"
+      },
+      {
+        "Name": "Sin City",
+        "Type": "movie"
+      },
+      {
+        "Name": "Taxi Driver",
+        "Type": "movie"
+      },
+      {
+        "Name": "Django Unchained",
+        "Type": "movie"
+      }
+    ]
+  }
+}
