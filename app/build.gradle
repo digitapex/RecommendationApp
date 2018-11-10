@@ -11,6 +11,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "TASTEDIVE_API_KEY", "\""+getTasteDiveApiKey()+"\""
+        buildConfigField "String", "MOVIEDB_API_KEY", "\""+getMovieDBApiKey()+"\""
 
     }
     buildTypes {
@@ -35,5 +36,11 @@ def getTasteDiveApiKey() {
     def Properties props = new Properties()
     props.load(new FileInputStream(new File('local.properties')))
     return props['TASTEDIVE_API_KEY']
+}
+
+def getMovieDBApiKey() {
+    def Properties props = new Properties()
+    props.load(new FileInputStream(new File('local.properties')))
+    return props['MOVIEDB_API_KEY']
 }
 
