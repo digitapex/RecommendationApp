@@ -1,5 +1,6 @@
 package com.spitslide.recommendationapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -26,10 +27,13 @@ public class SuggestionsActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suggestions);
+        Intent intent = getIntent();
+        String searchTerm = intent.getStringExtra(MainActivity.SEARCH_TERM);
+        retrofitConnection(searchTerm);
     }
 
 
-    private void retrofitConnection() {
+    private void retrofitConnection(String searchTerm) {
         // this needed because there's a bug on pre-Lollipop for TLS
         // https://stackoverflow.com/a/50640113/9702500
         ConnectionSpec spec = new ConnectionSpec.Builder(ConnectionSpec.COMPATIBLE_TLS)
@@ -58,7 +62,7 @@ public class SuggestionsActivity extends AppCompatActivity {
                 .client(client)
                 .build();
         TasteDiveNetwork tasteDiveNetwork = retrofit.create(TasteDiveNetwork.class);
-        Call<Similar> call = tasteDiveNetwork.getReponse(BuildConfig.TASTEDIVE_API_KEY, "pulp");
+        Call<Similar> call = tasteDiveNetwork.getReponse(BuildConfig.TASTEDIVE_API_KEY, searchTerm);
         call.enqueue(new Callback<Similar>() {
             @Override
             public void onResponse(Call<Similar> call, Response<Similar> response) {
