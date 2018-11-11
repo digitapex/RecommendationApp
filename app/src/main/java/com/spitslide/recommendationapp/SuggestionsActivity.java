@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.spitslide.recommendationapp.moviedb.Result;
 import com.spitslide.recommendationapp.tastedive.Similar;
 
 import java.util.Collections;
@@ -29,11 +30,11 @@ public class SuggestionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_suggestions);
         Intent intent = getIntent();
         String searchTerm = intent.getStringExtra(MainActivity.SEARCH_TERM);
-        retrofitConnection(searchTerm);
+        tasteDiveConnection(searchTerm);
     }
 
 
-    private void retrofitConnection(String searchTerm) {
+    private void tasteDiveConnection(String searchTerm) {
         // this needed because there's a bug on pre-Lollipop for TLS
         // https://stackoverflow.com/a/50640113/9702500
         ConnectionSpec spec = new ConnectionSpec.Builder(ConnectionSpec.COMPATIBLE_TLS)
@@ -71,6 +72,26 @@ public class SuggestionsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Similar> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void movieDbConnection(String movieName) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.themoviedb.org")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        MovieDBNetwork movieDBNetwork = retrofit.create(MovieDBNetwork.class);
+        Call<Result> call = movieDBNetwork.getResponse(BuildConfig.MOVIEDB_API_KEY, movieName);
+        call.enqueue(new Callback<Result>() {
+            @Override
+            public void onResponse(Call<Result> call, Response<Result> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Result> call, Throwable t) {
 
             }
         });
