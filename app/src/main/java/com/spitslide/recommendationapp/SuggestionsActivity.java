@@ -4,12 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.spitslide.recommendationapp.moviedb.Result;
 import com.spitslide.recommendationapp.tastedive.Similar;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import okhttp3.CipherSuite;
 import okhttp3.ConnectionSpec;
@@ -28,6 +32,17 @@ public class SuggestionsActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suggestions);
+
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        List<String> data = new ArrayList<>();
+        data.add("aaaa");
+        data.add("bbbb");
+        data.add("cccc");
+        SuggestionsAdapter suggestionsAdapter = new SuggestionsAdapter(data);
+        recyclerView.setAdapter(suggestionsAdapter);
+
+
         Intent intent = getIntent();
         String searchTerm = intent.getStringExtra(MainActivity.SEARCH_TERM);
         tasteDiveConnection(searchTerm);
