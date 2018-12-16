@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onSearch(View view) {
         Intent intent = new Intent(this, SuggestionsActivity.class);
-        intent.putExtra(SEARCH_TERM, "pulp fiction");
+        String searchTerm = ((EditText)findViewById(R.id.edit_text)).getText().toString();
+        intent.putExtra(SEARCH_TERM, searchTerm);
         startActivity(intent);
 
     }
