@@ -8,6 +8,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.spitslide.recommendationapp.moviedb.MovieDB;
 import com.spitslide.recommendationapp.moviedb.Result;
 import com.spitslide.recommendationapp.tastedive.Similar;
 
@@ -82,7 +83,9 @@ public class SuggestionsActivity extends AppCompatActivity {
         call.enqueue(new Callback<Similar>() {
             @Override
             public void onResponse(Call<Similar> call, Response<Similar> response) {
-                Log.d("MY", "reponse: " + response.body().getSimilar().getResults().get(3).getName());
+                String movieName = response.body().getSimilar().getResults().get(0).getName();
+                Log.d("MY", "Movie name from taste dive: " + movieName);
+                movieDbConnection(movieName);
             }
 
             @Override
@@ -98,16 +101,18 @@ public class SuggestionsActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         MovieDBNetwork movieDBNetwork = retrofit.create(MovieDBNetwork.class);
-        Call<Result> call = movieDBNetwork.getResponse(BuildConfig.MOVIEDB_API_KEY, movieName);
-        call.enqueue(new Callback<Result>() {
+        Call<MovieDB> call = movieDBNetwork.getResponse(BuildConfig.MOVIEDB_API_KEY, movieName);
+        call.enqueue(new Callback<MovieDB>() {
             @Override
-            public void onResponse(Call<Result> call, Response<Result> response) {
-
+            public void onResponse(Call<MovieDB> call, Response<MovieDB> response) {
+                // TODO - moviedb could have 0 results for a query
+                String posterPath = response.body().getResults().get(0).getPosterPath();
+                Log.d("MY", posterPath);
             }
 
             @Override
-            public void onFailure(Call<Result> call, Throwable t) {
-
+            public void onFailure(Call<MovieDB> call, Throwable t) {
+                Log.d("MY", "ERROR", t);
             }
         });
     }
